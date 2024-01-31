@@ -1,0 +1,64 @@
+<div class="w-52 h-52 bg-white py-4   font-semibold">
+  <div class="  hover:bg-blue-100 px-2 py-2" >
+    <button  class="">Boards</button>
+  </div>
+  <div class=" hover:bg-blue-100 px-2 py-2">
+    <Button>Templates</Button>
+  </div>
+  <div class=" hover:bg-blue-100 px-2 py-2">
+    <Button>Home</Button>
+  </div>
+  <cdk-accordion>
+    <cdk-accordion-item  #accordionMenu="cdkAccordionItem">
+      <button  class="p-2"type="button" (click)="accordionMenu.toggle()">My Workspace <fa-icon [icon]="accordionMenu.expanded ? faAngleUp : faAngleDown"></fa-icon></button>
+      <div [style.display]="accordionMenu.expanded ? '': 'none'">
+        <ul class="flex flex-col font-medium text-gray-700">
+          <li>
+            <a class="block bg-sky-100 rounded py-1 px-3 text-sky-700"
+              ><fa-icon [icon]="faTrello"></fa-icon> Boards</a
+            >
+          </li>
+          <li>
+            <a class="block py-1 px-3"
+              ><fa-icon [icon]="faBox"></fa-icon> Templates</a
+            >
+          </li>
+          <li>
+            <a class="block py-1 px-3"
+              ><fa-icon [icon]="faWaveSquare"></fa-icon> Home</a
+            >
+          </li>
+        </ul>
+      </div>
+    </cdk-accordion-item>
+  </cdk-accordion>
+  <cdk-accordion >
+    <cdk-accordion-item class="p-2" #accordionMain="cdkAccordionItem">
+      <button type="button" (click)="accordionMain.toggle()">Categorys</button>
+      <ul>
+        <li [style.display]="accordionMain.expanded? '' : 'none'">
+          <cdk-accordion   >
+            <cdk-accordion-item class="p-2" #accodionCategorys="cdkAccordionItem" *ngFor="let item of items"  >
+              <button class="w-full text-left" type="button"  (click)="accodionCategorys.toggle()" >
+                {{item.label}} <fa-icon [icon]="accodionCategorys.expanded? faAngleUp : faAngleDown"></fa-icon>
+                  <div >
+                    <ul [style.display]="accodionCategorys.expanded?'': 'none' ">
+                      <li *ngFor="let subItem of item.items ">
+                        {{subItem.label}}
+
+                      </li>
+                    </ul>
+                  </div>
+
+
+
+
+              </button>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+        </li>
+      </ul>
+    </cdk-accordion-item>
+  </cdk-accordion>
+</div>
